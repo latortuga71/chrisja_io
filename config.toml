@@ -1,4 +1,4 @@
-baseURL = "https://christopherja.rocks"
+baseURL = "https://christopherja.rocks/"
 title   = "Christopher Alonso"
 
 DefaultContentLanguage = "en"
