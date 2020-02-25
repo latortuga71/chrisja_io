@@ -138,7 +138,3 @@ disableHugoGeneratorInject = false
     identifier = "posts"
     name       = "Posts"
     url        = "posts/"
-  [[menu.main]]
-    identifier = "veryoldposts"
-    name       = "Very Old Posts"
-    url        = "Very_Old_Posts/"
