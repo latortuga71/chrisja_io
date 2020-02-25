@@ -6,7 +6,7 @@ aliases = ["about-us","contact"]
   name = "Latortuga71"
 +++
 
-Christopher Alonso:
+Christopher Alonso
 
 * OSCP
 * RHCE
