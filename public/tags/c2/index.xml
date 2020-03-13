@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C2 on Christopher Alonso</title>
+    <link>https://christopherja.rocks/tags/c2/</link>
+    <description>Recent content in C2 on Christopher Alonso</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Fri, 03 Jan 2020 13:06:50 -0500</lastBuildDate>
+    
+	<atom:link href="https://christopherja.rocks/tags/c2/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>BlackTabby C2 Server</title>
+      <link>https://christopherja.rocks/posts/2020/01/blacktabby-c2-server/</link>
+      <pubDate>Fri, 03 Jan 2020 13:06:50 -0500</pubDate>
+      
+      <guid>https://christopherja.rocks/posts/2020/01/blacktabby-c2-server/</guid>
+      <description>I wanted to learn more about C2 Servers, so i tried to write my own. And i was semi-successful. It works. But its not neccesarily useful for others in my opinion. I think my biggest mistake was using couch db as the database. Using sqlLite would have been better i think. I will definitely pursue this again. As it wasnt as hard as i thought and most likely will try the same formula again but with a different DB and perhaps writing the server in C (As i think it would help me get better).</description>
+    </item>
+    
+  </channel>
+</rss>

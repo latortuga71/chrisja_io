@@ -30,21 +30,22 @@
     </item>
     
     <item>
-      <title>BlackTabby C2 Server</title>
-      <link>https://christopherja.rocks/posts/2020/01/blacktabby-c2-server/</link>
-      <pubDate>Sat, 25 Jan 2020 13:06:50 -0500</pubDate>
-      
-      <guid>https://christopherja.rocks/posts/2020/01/blacktabby-c2-server/</guid>
-      <description>my c2 server notes</description>
-    </item>
-    
-    <item>
       <title>AWS Ephemeral Workspaces</title>
       <link>https://christopherja.rocks/posts/2020/01/aws-ephemeral-workspaces/</link>
       <pubDate>Wed, 15 Jan 2020 13:05:45 -0500</pubDate>
       
       <guid>https://christopherja.rocks/posts/2020/01/aws-ephemeral-workspaces/</guid>
-      <description>notes and break down on ephemeral workspaces</description>
+      <description>AWS doesnt offer ephemeral workspaces at this point in time. So i was tasked with finding a solution and seeing if this was possible. Searching online i didnt find much. But i did find a way to work through this problem. Using lambda functions, Cloud Watch , Cloud Trail &amp;amp;Workspaces of course.
+In my repo i have a pdf explaining how it works (hopefully well) its basically three lambda functions. One function triggers when a new workspace is created, and creates a cloud watch rule on it to see if it disconnects or logs off.</description>
+    </item>
+    
+    <item>
+      <title>BlackTabby C2 Server</title>
+      <link>https://christopherja.rocks/posts/2020/01/blacktabby-c2-server/</link>
+      <pubDate>Fri, 03 Jan 2020 13:06:50 -0500</pubDate>
+      
+      <guid>https://christopherja.rocks/posts/2020/01/blacktabby-c2-server/</guid>
+      <description>I wanted to learn more about C2 Servers, so i tried to write my own. And i was semi-successful. It works. But its not neccesarily useful for others in my opinion. I think my biggest mistake was using couch db as the database. Using sqlLite would have been better i think. I will definitely pursue this again. As it wasnt as hard as i thought and most likely will try the same formula again but with a different DB and perhaps writing the server in C (As i think it would help me get better).</description>
     </item>
     
     <item>

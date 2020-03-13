@@ -21,6 +21,15 @@
     </item>
     
     <item>
+      <title>G Suite</title>
+      <link>https://christopherja.rocks/tags/g-suite/</link>
+      <pubDate>Sun, 02 Feb 2020 13:05:45 -0500</pubDate>
+      
+      <guid>https://christopherja.rocks/tags/g-suite/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Splunk</title>
       <link>https://christopherja.rocks/tags/splunk/</link>
       <pubDate>Sun, 02 Feb 2020 13:05:45 -0500</pubDate>
@@ -30,11 +39,47 @@
     </item>
     
     <item>
-      <title>untagged</title>
-      <link>https://christopherja.rocks/tags/untagged/</link>
-      <pubDate>Sat, 25 Jan 2020 13:06:50 -0500</pubDate>
+      <title>AWS</title>
+      <link>https://christopherja.rocks/tags/aws/</link>
+      <pubDate>Wed, 15 Jan 2020 13:05:45 -0500</pubDate>
       
-      <guid>https://christopherja.rocks/tags/untagged/</guid>
+      <guid>https://christopherja.rocks/tags/aws/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>https://christopherja.rocks/tags/python/</link>
+      <pubDate>Wed, 15 Jan 2020 13:05:45 -0500</pubDate>
+      
+      <guid>https://christopherja.rocks/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Workspaces</title>
+      <link>https://christopherja.rocks/tags/workspaces/</link>
+      <pubDate>Wed, 15 Jan 2020 13:05:45 -0500</pubDate>
+      
+      <guid>https://christopherja.rocks/tags/workspaces/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>C2</title>
+      <link>https://christopherja.rocks/tags/c2/</link>
+      <pubDate>Fri, 03 Jan 2020 13:06:50 -0500</pubDate>
+      
+      <guid>https://christopherja.rocks/tags/c2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CouchDB</title>
+      <link>https://christopherja.rocks/tags/couchdb/</link>
+      <pubDate>Fri, 03 Jan 2020 13:06:50 -0500</pubDate>
+      
+      <guid>https://christopherja.rocks/tags/couchdb/</guid>
       <description></description>
     </item>
     

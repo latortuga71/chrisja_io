@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Workspaces on Christopher Alonso</title>
+    <link>https://christopherja.rocks/tags/workspaces/</link>
+    <description>Recent content in Workspaces on Christopher Alonso</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Wed, 15 Jan 2020 13:05:45 -0500</lastBuildDate>
+    
+	<atom:link href="https://christopherja.rocks/tags/workspaces/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>AWS Ephemeral Workspaces</title>
+      <link>https://christopherja.rocks/posts/2020/01/aws-ephemeral-workspaces/</link>
+      <pubDate>Wed, 15 Jan 2020 13:05:45 -0500</pubDate>
+      
+      <guid>https://christopherja.rocks/posts/2020/01/aws-ephemeral-workspaces/</guid>
+      <description>AWS doesnt offer ephemeral workspaces at this point in time. So i was tasked with finding a solution and seeing if this was possible. Searching online i didnt find much. But i did find a way to work through this problem. Using lambda functions, Cloud Watch , Cloud Trail &amp;amp;Workspaces of course.
+In my repo i have a pdf explaining how it works (hopefully well) its basically three lambda functions. One function triggers when a new workspace is created, and creates a cloud watch rule on it to see if it disconnects or logs off.</description>
+    </item>
+    
+  </channel>
+</rss>

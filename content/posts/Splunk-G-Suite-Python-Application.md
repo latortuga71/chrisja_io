@@ -6,6 +6,7 @@ toc: false
 images:
 tags:
   - Splunk
+  - G Suite
 ---
 
 ## Ingesting G Suite Alert Center Logs Into Splunk

@@ -33,6 +33,11 @@
   </url>
   
   <url>
+    <loc>https://christopherja.rocks/tags/g-suite/</loc>
+    <lastmod>2020-02-02T13:05:45-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://christopherja.rocks/tags/splunk/</loc>
     <lastmod>2020-02-02T13:05:45-05:00</lastmod>
   </url>
@@ -43,18 +48,38 @@
   </url>
   
   <url>
-    <loc>https://christopherja.rocks/posts/2020/01/blacktabby-c2-server/</loc>
-    <lastmod>2020-01-25T13:06:50-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://christopherja.rocks/tags/untagged/</loc>
-    <lastmod>2020-01-25T13:06:50-05:00</lastmod>
+    <loc>https://christopherja.rocks/tags/aws/</loc>
+    <lastmod>2020-01-15T13:05:45-05:00</lastmod>
   </url>
   
   <url>
     <loc>https://christopherja.rocks/posts/2020/01/aws-ephemeral-workspaces/</loc>
     <lastmod>2020-01-15T13:05:45-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://christopherja.rocks/tags/python/</loc>
+    <lastmod>2020-01-15T13:05:45-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://christopherja.rocks/tags/workspaces/</loc>
+    <lastmod>2020-01-15T13:05:45-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://christopherja.rocks/posts/2020/01/blacktabby-c2-server/</loc>
+    <lastmod>2020-01-03T13:06:50-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://christopherja.rocks/tags/c2/</loc>
+    <lastmod>2020-01-03T13:06:50-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://christopherja.rocks/tags/couchdb/</loc>
+    <lastmod>2020-01-03T13:06:50-05:00</lastmod>
   </url>
   
   <url>
