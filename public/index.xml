@@ -2,33 +2,69 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Christopher Alonso</title>
-    <link>https://example.com/</link>
+    <link>https://christopherja.rocks/</link>
     <description>Recent content on Christopher Alonso</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
     <lastBuildDate>Wed, 09 Apr 2014 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://christopherja.rocks/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Old Posts Found Here</title>
-      <link>https://example.com/posts/2020/02/old-posts-found-here/</link>
-      <pubDate>Tue, 25 Feb 2020 08:53:31 -0500</pubDate>
+      <title>Phishing AMSI Bypass</title>
+      <link>https://christopherja.rocks/posts/2020/02/phishing-amsi-bypass/</link>
+      <pubDate>Tue, 25 Feb 2020 13:07:25 -0500</pubDate>
       
-      <guid>https://example.com/posts/2020/02/old-posts-found-here/</guid>
-      <description>test OldSite.</description>
+      <guid>https://christopherja.rocks/posts/2020/02/phishing-amsi-bypass/</guid>
+      <description>How to bypass AMSI (The Simplest Way) I was looking to run my own phishing campaigns on my current organization and was testing office document payloads. I tried the old fashioned VBA in the macro running the shell function as well as some others, and defender caught most if not all of them. Using this tool Macro-Pack works sometimes but often, it would get flagged or the powershell command would not properly run.</description>
+    </item>
+    
+    <item>
+      <title>Splunk-G-Suite-Python-App</title>
+      <link>https://christopherja.rocks/posts/2020/02/splunk-g-suite-python-app/</link>
+      <pubDate>Sun, 02 Feb 2020 13:05:45 -0500</pubDate>
+      
+      <guid>https://christopherja.rocks/posts/2020/02/splunk-g-suite-python-app/</guid>
+      <description>Ingesting G Suite Alert Center Logs Into Splunk I was recently tasked with ingesting alot of data from various cloud platforms like AWS &amp;amp; GCP into splunk. Splunk provides very good documentation and provides add-ons for both of these platforms. However for G-Suite (which is like 0365 but for google) There seems to be one app that is used and actually works very well. G Suite App Kyle Smith wrote it.</description>
+    </item>
+    
+    <item>
+      <title>BlackTabby C2 Server</title>
+      <link>https://christopherja.rocks/posts/2020/01/blacktabby-c2-server/</link>
+      <pubDate>Sat, 25 Jan 2020 13:06:50 -0500</pubDate>
+      
+      <guid>https://christopherja.rocks/posts/2020/01/blacktabby-c2-server/</guid>
+      <description>my c2 server notes</description>
+    </item>
+    
+    <item>
+      <title>AWS Ephemeral Workspaces</title>
+      <link>https://christopherja.rocks/posts/2020/01/aws-ephemeral-workspaces/</link>
+      <pubDate>Wed, 15 Jan 2020 13:05:45 -0500</pubDate>
+      
+      <guid>https://christopherja.rocks/posts/2020/01/aws-ephemeral-workspaces/</guid>
+      <description>notes and break down on ephemeral workspaces</description>
+    </item>
+    
+    <item>
+      <title>Old Posts Found Here</title>
+      <link>https://christopherja.rocks/posts/2020/01/old-posts-found-here/</link>
+      <pubDate>Wed, 01 Jan 2020 08:53:31 -0500</pubDate>
+      
+      <guid>https://christopherja.rocks/posts/2020/01/old-posts-found-here/</guid>
+      <description>Check out my OldSite that contains all my old posts.</description>
     </item>
     
     <item>
       <title>About</title>
-      <link>https://example.com/about/</link>
+      <link>https://christopherja.rocks/about/</link>
       <pubDate>Wed, 09 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/about/</guid>
-      <description>I am Christopher Alonso, i am very interested in network security and figuring out how things work, this is just a place for me to store my small notes on personal projects and finding while improving my skills. Hopefully some of my posts can be of use to others. Just as they have helped me.
-I have the following certifications:
- OSCP RHCE SEC+ CCNA  Resume</description>
+      <guid>https://christopherja.rocks/about/</guid>
+      <description>Christopher Alonso
+ OSCP RHCE SEC+ CCNA  This is just a place for me to store my small notes on personal projects and findings while improving my skills. Hopefully some of my posts can be of use to others. Just as they have helped me.
+Resume</description>
     </item>
     
   </channel>

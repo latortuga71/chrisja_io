@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Splunk on Christopher Alonso</title>
+    <link>https://christopherja.rocks/tags/splunk/</link>
+    <description>Recent content in Splunk on Christopher Alonso</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Sun, 02 Feb 2020 13:05:45 -0500</lastBuildDate>
+    
+	<atom:link href="https://christopherja.rocks/tags/splunk/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Splunk-G-Suite-Python-App</title>
+      <link>https://christopherja.rocks/posts/2020/02/splunk-g-suite-python-app/</link>
+      <pubDate>Sun, 02 Feb 2020 13:05:45 -0500</pubDate>
+      
+      <guid>https://christopherja.rocks/posts/2020/02/splunk-g-suite-python-app/</guid>
+      <description>Ingesting G Suite Alert Center Logs Into Splunk I was recently tasked with ingesting alot of data from various cloud platforms like AWS &amp;amp; GCP into splunk. Splunk provides very good documentation and provides add-ons for both of these platforms. However for G-Suite (which is like 0365 but for google) There seems to be one app that is used and actually works very well. G Suite App Kyle Smith wrote it.</description>
+    </item>
+    
+  </channel>
+</rss>

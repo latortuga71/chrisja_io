@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>OldPosts on Christopher Alonso</title>
-    <link>https://example.com/tags/oldposts/</link>
+    <link>https://christopherja.rocks/tags/oldposts/</link>
     <description>Recent content in OldPosts on Christopher Alonso</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Tue, 25 Feb 2020 08:53:31 -0500</lastBuildDate>
+    <lastBuildDate>Wed, 01 Jan 2020 08:53:31 -0500</lastBuildDate>
     
-	<atom:link href="https://example.com/tags/oldposts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://christopherja.rocks/tags/oldposts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Old Posts Found Here</title>
-      <link>https://example.com/posts/2020/02/old-posts-found-here/</link>
-      <pubDate>Tue, 25 Feb 2020 08:53:31 -0500</pubDate>
+      <link>https://christopherja.rocks/posts/2020/01/old-posts-found-here/</link>
+      <pubDate>Wed, 01 Jan 2020 08:53:31 -0500</pubDate>
       
-      <guid>https://example.com/posts/2020/02/old-posts-found-here/</guid>
-      <description>test OldSite.</description>
+      <guid>https://christopherja.rocks/posts/2020/01/old-posts-found-here/</guid>
+      <description>Check out my OldSite that contains all my old posts.</description>
     </item>
     
   </channel>

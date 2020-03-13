@@ -3,66 +3,101 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://example.com/posts/2020/02/old-posts-found-here/</loc>
-    <lastmod>2020-02-25T08:53:31-05:00</lastmod>
+    <loc>https://christopherja.rocks/tags/asmi/</loc>
+    <lastmod>2020-02-25T13:07:25-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://example.com/tags/oldposts/</loc>
-    <lastmod>2020-02-25T08:53:31-05:00</lastmod>
+    <loc>https://christopherja.rocks/posts/2020/02/phishing-amsi-bypass/</loc>
+    <lastmod>2020-02-25T13:07:25-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://example.com/posts/</loc>
-    <lastmod>2020-02-25T08:53:31-05:00</lastmod>
+    <loc>https://christopherja.rocks/posts/</loc>
+    <lastmod>2020-02-25T13:07:25-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://example.com/tags/</loc>
-    <lastmod>2020-02-25T08:53:31-05:00</lastmod>
+    <loc>https://christopherja.rocks/tags/</loc>
+    <lastmod>2020-02-25T13:07:25-05:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="https://example.com/fr/tags/"
+                href="https://christopherja.rocks/fr/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://example.com/tags/"
+                href="https://christopherja.rocks/tags/"
                 />
   </url>
   
   <url>
-    <loc>https://example.com/about/</loc>
+    <loc>https://christopherja.rocks/tags/splunk/</loc>
+    <lastmod>2020-02-02T13:05:45-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://christopherja.rocks/posts/2020/02/splunk-g-suite-python-app/</loc>
+    <lastmod>2020-02-02T13:05:45-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://christopherja.rocks/posts/2020/01/blacktabby-c2-server/</loc>
+    <lastmod>2020-01-25T13:06:50-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://christopherja.rocks/tags/untagged/</loc>
+    <lastmod>2020-01-25T13:06:50-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://christopherja.rocks/posts/2020/01/aws-ephemeral-workspaces/</loc>
+    <lastmod>2020-01-15T13:05:45-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://christopherja.rocks/posts/2020/01/old-posts-found-here/</loc>
+    <lastmod>2020-01-01T08:53:31-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://christopherja.rocks/tags/oldposts/</loc>
+    <lastmod>2020-01-01T08:53:31-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://christopherja.rocks/about/</loc>
     <lastmod>2014-04-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://example.com/</loc>
+    <loc>https://christopherja.rocks/</loc>
     <lastmod>2014-04-09T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="https://example.com/fr/"
+                href="https://christopherja.rocks/fr/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://example.com/"
+                href="https://christopherja.rocks/"
                 />
   </url>
   
   <url>
-    <loc>https://example.com/categories/</loc>
+    <loc>https://christopherja.rocks/categories/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="https://example.com/fr/categories/"
+                href="https://christopherja.rocks/fr/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://example.com/categories/"
+                href="https://christopherja.rocks/categories/"
                 />
   </url>
   
