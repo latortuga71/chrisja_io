@@ -8,6 +8,7 @@ aliases = ["about-us","contact"]
 
 Christopher Alonso
 
+* OSCE
 * OSCP
 * RHCE
 * SEC+
