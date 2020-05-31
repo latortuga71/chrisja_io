@@ -18,7 +18,7 @@
       
       <guid>https://christopherja.rocks/posts/2020/05/azureadsync-backdoor/</guid>
       <description>Recently created a golang binary that dumps credentials from the AD Sync Server and creates a user in azure and assigns it to any group in AzureAD you like. Check out the work done by Adam Chester and Dirk-jan at the following links below as this could have not been possible without their hard work and research. Seriously read those both as everything ive done piggybacks of them.
- Dirk-jan&amp;rsquo;s blog post Adam Chester&amp;rsquo;s blog post  Dump creds?</description>
+ Dirk-jan&amp;rsquo;s blog post Adam Chester&amp;rsquo;s blog post  tldr Dump AD Sync creds via powershell.</description>
     </item>
     
   </channel>

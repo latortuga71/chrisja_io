@@ -1,7 +1,7 @@
 ---
 title: "AzureADSync BackDoor"
 date: 2020-05-28T08:53:31-05:00
-draft: true
+draft: false
 toc: false
 images:
 tags:
@@ -313,5 +313,7 @@ He invited himself as a guest and created an azure web app proxy to get access t
 ## Why Golang?
 Idk just trying it out. Probably will go back to learning C though.
 
+## Repo Link
+https://github.com/latortuga71/Learning_GO/tree/master/AzureADBackDoor
 ## POC Video
 {{< youtube GW6CC6ZUVfk >}}
