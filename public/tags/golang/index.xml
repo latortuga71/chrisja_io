@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Golang on Christopher Alonso</title>
+    <link>https://christopherja.rocks/tags/golang/</link>
+    <description>Recent content in Golang on Christopher Alonso</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Thu, 28 May 2020 08:53:31 -0500</lastBuildDate>
+    
+	<atom:link href="https://christopherja.rocks/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>AzureADSync BackDoor</title>
+      <link>https://christopherja.rocks/posts/2020/05/azureadsync-backdoor/</link>
+      <pubDate>Thu, 28 May 2020 08:53:31 -0500</pubDate>
+      
+      <guid>https://christopherja.rocks/posts/2020/05/azureadsync-backdoor/</guid>
+      <description>Recently created a golang binary that dumps credentials from the AD Sync Server and creates a user in azure and assigns it to any group in AzureAD you like. Check out the work done by Adam Chester and Dirk-jan at the following links below as this could have not been possible without their hard work and research. Seriously read those both as everything ive done piggybacks of them.
+ Dirk-jan&amp;rsquo;s blog post Adam Chester&amp;rsquo;s blog post  Dump creds?</description>
+    </item>
+    
+  </channel>
+</rss>

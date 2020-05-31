@@ -5,8 +5,82 @@
         <description>Recent content in Posts on Christopher Alonso</description>
         <generator>Hugo -- gohugo.io</generator>
         <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-        <lastBuildDate>Tue, 25 Feb 2020 13:07:25 -0500</lastBuildDate>
+        <lastBuildDate>Thu, 28 May 2020 08:53:31 -0500</lastBuildDate>
         <atom:link href="https://christopherja.rocks/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>AzureADSync BackDoor</title>
+            <link>https://christopherja.rocks/posts/2020/05/azureadsync-backdoor/</link>
+            <pubDate>Thu, 28 May 2020 08:53:31 -0500</pubDate>
+            
+            <guid>https://christopherja.rocks/posts/2020/05/azureadsync-backdoor/</guid>
+            <description>Recently created a golang binary that dumps credentials from the AD Sync Server and creates a user in azure and assigns it to any group in AzureAD you like. Check out the work done by Adam Chester and Dirk-jan at the following links below as this could have not been possible without their hard work and research. Seriously read those both as everything ive done piggybacks of them.
+ Dirk-jan&amp;rsquo;s blog post Adam Chester&amp;rsquo;s blog post  Dump creds?</description>
+            <content type="html"><![CDATA[<p>Recently created a golang binary that dumps credentials from the AD Sync Server and creates a user in azure and assigns it to any group in AzureAD you like. Check out the work done by Adam Chester and Dirk-jan at the following links below as this could have not been possible without their hard work and research. Seriously read those both as everything ive done piggybacks of them.</p>
+<ul>
+<li><a href="https://dirkjanm.io/azure-ad-privilege-escalation-application-admin/">Dirk-jan&rsquo;s blog post</a></li>
+<li><a href="https://blog.xpnsec.com/azuread-connect-for-redteam/#more">Adam Chester&rsquo;s blog post</a></li>
+</ul>
+<h2 id="dump-creds">Dump creds?</h2>
+<p>Heres how i edited adams scipt to also dump azure users creds</p>
+<h2 id="authenticate-with-dumped-creds">Authenticate with dumped creds</h2>
+<p>heres how i authenticated to the graph api with those creds</p>
+<h2 id="list-service-principals--roles">List service principals &amp; roles</h2>
+<p>heres how i listed the service principals and got what roles they had</p>
+<h2 id="well-these-two-work-lets-use-those">Well these two work lets use those</h2>
+<p>heres why i used those two apps and not the other better ones</p>
+<h2 id="create-useradd-to-group">Create user/add to group</h2>
+<p>heres the code for adding the user to the group</p>
+<h2 id="well-now-what">Well now what</h2>
+<p>heres some screenshots of the audit logs and event viewer</p>
+<h2 id="final-thoughts">Final Thoughts</h2>
+<p>yeah idk azure phishing is going to be crazy</p>
+<h2 id="more-links">More Links</h2>
+<p>heres some links</p>
+<h2 id="why-golang">Why Golang?</h2>
+<p>Idk just trying it out.</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>OSCE Exam Tips</title>
+            <link>https://christopherja.rocks/posts/2020/04/osce-exam-tips/</link>
+            <pubDate>Thu, 02 Apr 2020 08:53:31 -0500</pubDate>
+            
+            <guid>https://christopherja.rocks/posts/2020/04/osce-exam-tips/</guid>
+            <description>Just finished my OSCE Exam. And i wanted to contribute a quick blog post regarding the exam/course since i used alot of these myself to prepare. Ill start by laying out some key things i think that helped me pass and eleborate on each with some more details. Keep in mind this is meant to be very to the point and will not detail my exam experience such as time i took etc.</description>
+            <content type="html"><![CDATA[<p>Just finished my OSCE Exam. And i wanted to contribute a quick blog post regarding the exam/course since i used alot of these myself to prepare. Ill start by laying out some key things i think that helped me pass and eleborate on each with some more details. Keep in mind this is meant to be very to the point and will not detail my exam experience such as time i took etc. (Meant to be a short blog post)</p>
+<ul>
+<li>SLAE Course</li>
+<li>Knowledge of PHP &amp; Web Applications</li>
+<li>Practicing on VulnServer</li>
+<li>Knowledge of C</li>
+<li>Simple Shellcoding On Windows</li>
+<li>Using Google For Research</li>
+</ul>
+<h2 id="slae-course">SLAE Course</h2>
+<p><a href="https://www.pentesteracademy.com/course?id=3">I highly suggest taking this course</a> or just signing up to pentester academy in general, by the end of it you will understand x86 assembly pretty well. And will have written shellcode in linux. While using GDB as the debugger. I would go as far as to say this should be a required prerequisite before taking OSCE.</p>
+<h2 id="knowledge-of-php--web-applications">Knowledge of PHP &amp; Web Applications</h2>
+<p>About 1.5 years ago i was on a helpdesk when learning PHP and people said i was wasting my time lol. I highly suggest creating simple php applications at the very minimum and use the following <a href="https://github.com/paralax/lfi-labs">Github repo</a> to practice some LFI attacks and perhaps trying to obtain RCE from an LFI attack. LFI gets touched on in the course. So you dont need to spend that much time on this but at least be able to read source code and identify vulnerable functions.</p>
+<h2 id="practicing-on-vulnserver">Practicing on VulnServer</h2>
+<p>This is by far the most helpful thing you can do to pass OSCE stephen bradshaw created a vulnerable server that can be used for exploit development. Do every single function atleast twice and the harder ones 3 times.
+<a href="https://github.com/stephenbradshaw/vulnserver">VulnServer</a></p>
+<h2 id="knowledge-of-c--python">Knowledge of C &amp; Python</h2>
+<p>This helps alot, this should kind of be a prerequisite to SLAE but yeah.</p>
+<h2 id="simple-shellcoding-on-windows">Simple Shellcoding on Windows</h2>
+<p>Do it. <a href="https://www.corelan.be/index.php/2010/02/25/exploit-writing-tutorial-part-9-introduction-to-win32-shellcoding/">Corelan Intro to Shellcoding</a></p>
+<h2 id="using-google-for-research">Using Google For Research</h2>
+<p>You will be googling alot. Get used to googling your hunches on what the next step or exploit can be.</p>
+<h2 id="final-thoughts">Final Thoughts</h2>
+<p>By the end of the course and while doing vulnserver you should be familiar with SEH stuff, classic overflows and ways to jump around small buffer space as well as SUBENCODE your instructions. The course really expects you to learn on your own before and after the course. I have some links below that you should bookmark while taking the course. Before you take the exam be prepared to think way outside the box and relax.</p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=0n3Li63PwnQ">John Hammond OSCE PREP VID</a></li>
+<li><a href="http://vellosec.net/2018/08/carving-shellcode-using-restrictive-character-sets/">SubEncoding</a></li>
+<li><a href="http://www.gosecure.it/blog/art/452/sec/create-a-custom-shellcode-using-system-function/">Custom ShellCode Example</a></li>
+<li><a href="https://defuse.ca/online-x86-assembler.htm">Online x86 / x64 Assembler and Disassembler</a></li>
+</ul>
+]]></content>
+        </item>
         
         <item>
             <title>Phishing AMSI Bypass</title>

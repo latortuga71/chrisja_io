@@ -12,6 +12,25 @@
     
     
     <item>
+      <title>AzureADSync BackDoor</title>
+      <link>https://christopherja.rocks/posts/2020/05/azureadsync-backdoor/</link>
+      <pubDate>Thu, 28 May 2020 08:53:31 -0500</pubDate>
+      
+      <guid>https://christopherja.rocks/posts/2020/05/azureadsync-backdoor/</guid>
+      <description>Recently created a golang binary that dumps credentials from the AD Sync Server and creates a user in azure and assigns it to any group in AzureAD you like. Check out the work done by Adam Chester and Dirk-jan at the following links below as this could have not been possible without their hard work and research. Seriously read those both as everything ive done piggybacks of them.
+ Dirk-jan&amp;rsquo;s blog post Adam Chester&amp;rsquo;s blog post  Dump creds?</description>
+    </item>
+    
+    <item>
+      <title>OSCE Exam Tips</title>
+      <link>https://christopherja.rocks/posts/2020/04/osce-exam-tips/</link>
+      <pubDate>Thu, 02 Apr 2020 08:53:31 -0500</pubDate>
+      
+      <guid>https://christopherja.rocks/posts/2020/04/osce-exam-tips/</guid>
+      <description>Just finished my OSCE Exam. And i wanted to contribute a quick blog post regarding the exam/course since i used alot of these myself to prepare. Ill start by laying out some key things i think that helped me pass and eleborate on each with some more details. Keep in mind this is meant to be very to the point and will not detail my exam experience such as time i took etc.</description>
+    </item>
+    
+    <item>
       <title>Phishing AMSI Bypass</title>
       <link>https://christopherja.rocks/posts/2020/02/phishing-amsi-bypass/</link>
       <pubDate>Tue, 25 Feb 2020 13:07:25 -0500</pubDate>
@@ -64,7 +83,7 @@ In my repo i have a pdf explaining how it works (hopefully well) its basically t
       
       <guid>https://christopherja.rocks/about/</guid>
       <description>Christopher Alonso
- OSCP RHCE SEC+ CCNA  This is just a place for me to store my small notes on personal projects and findings while improving my skills. Hopefully some of my posts can be of use to others. Just as they have helped me.
+ OSCE OSCP RHCE SEC+ CCNA  This is just a place for me to store my small notes on personal projects and findings while improving my skills. Hopefully some of my posts can be of use to others. Just as they have helped me.
 Resume</description>
     </item>
     

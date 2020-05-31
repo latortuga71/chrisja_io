@@ -6,10 +6,64 @@
     <description>Recent content in Tags on Christopher Alonso</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Tue, 25 Feb 2020 13:07:25 -0500</lastBuildDate>
+    <lastBuildDate>Thu, 28 May 2020 08:53:31 -0500</lastBuildDate>
     
 	<atom:link href="https://christopherja.rocks/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Azure</title>
+      <link>https://christopherja.rocks/tags/azure/</link>
+      <pubDate>Thu, 28 May 2020 08:53:31 -0500</pubDate>
+      
+      <guid>https://christopherja.rocks/tags/azure/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>AzureAD</title>
+      <link>https://christopherja.rocks/tags/azuread/</link>
+      <pubDate>Thu, 28 May 2020 08:53:31 -0500</pubDate>
+      
+      <guid>https://christopherja.rocks/tags/azuread/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Golang</title>
+      <link>https://christopherja.rocks/tags/golang/</link>
+      <pubDate>Thu, 28 May 2020 08:53:31 -0500</pubDate>
+      
+      <guid>https://christopherja.rocks/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Exam</title>
+      <link>https://christopherja.rocks/tags/exam/</link>
+      <pubDate>Thu, 02 Apr 2020 08:53:31 -0500</pubDate>
+      
+      <guid>https://christopherja.rocks/tags/exam/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>OSCE</title>
+      <link>https://christopherja.rocks/tags/osce/</link>
+      <pubDate>Thu, 02 Apr 2020 08:53:31 -0500</pubDate>
+      
+      <guid>https://christopherja.rocks/tags/osce/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tips</title>
+      <link>https://christopherja.rocks/tags/tips/</link>
+      <pubDate>Thu, 02 Apr 2020 08:53:31 -0500</pubDate>
+      
+      <guid>https://christopherja.rocks/tags/tips/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>ASMI</title>
@@ -44,51 +98,6 @@
       <pubDate>Wed, 15 Jan 2020 13:05:45 -0500</pubDate>
       
       <guid>https://christopherja.rocks/tags/aws/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Python</title>
-      <link>https://christopherja.rocks/tags/python/</link>
-      <pubDate>Wed, 15 Jan 2020 13:05:45 -0500</pubDate>
-      
-      <guid>https://christopherja.rocks/tags/python/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Workspaces</title>
-      <link>https://christopherja.rocks/tags/workspaces/</link>
-      <pubDate>Wed, 15 Jan 2020 13:05:45 -0500</pubDate>
-      
-      <guid>https://christopherja.rocks/tags/workspaces/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>C2</title>
-      <link>https://christopherja.rocks/tags/c2/</link>
-      <pubDate>Fri, 03 Jan 2020 13:06:50 -0500</pubDate>
-      
-      <guid>https://christopherja.rocks/tags/c2/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>CouchDB</title>
-      <link>https://christopherja.rocks/tags/couchdb/</link>
-      <pubDate>Fri, 03 Jan 2020 13:06:50 -0500</pubDate>
-      
-      <guid>https://christopherja.rocks/tags/couchdb/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>OldPosts</title>
-      <link>https://christopherja.rocks/tags/oldposts/</link>
-      <pubDate>Wed, 01 Jan 2020 08:53:31 -0500</pubDate>
-      
-      <guid>https://christopherja.rocks/tags/oldposts/</guid>
       <description></description>
     </item>
     
