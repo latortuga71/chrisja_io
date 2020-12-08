@@ -3,6 +3,46 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://christopherja.rocks/tags/exam/</loc>
+    <lastmod>2020-12-07T08:53:31-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://christopherja.rocks/tags/oswe/</loc>
+    <lastmod>2020-12-07T08:53:31-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://christopherja.rocks/posts/2020/12/oswe-exam-tips/</loc>
+    <lastmod>2020-12-07T08:53:31-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://christopherja.rocks/posts/</loc>
+    <lastmod>2020-12-07T08:53:31-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://christopherja.rocks/tags/</loc>
+    <lastmod>2020-12-07T08:53:31-05:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://christopherja.rocks/fr/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://christopherja.rocks/tags/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://christopherja.rocks/tags/tips/</loc>
+    <lastmod>2020-12-07T08:53:31-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://christopherja.rocks/tags/azure/</loc>
     <lastmod>2020-05-28T08:53:31-05:00</lastmod>
   </url>
@@ -23,42 +63,12 @@
   </url>
   
   <url>
-    <loc>https://christopherja.rocks/posts/</loc>
-    <lastmod>2020-05-28T08:53:31-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://christopherja.rocks/tags/</loc>
-    <lastmod>2020-05-28T08:53:31-05:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="fr"
-                href="https://christopherja.rocks/fr/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://christopherja.rocks/tags/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://christopherja.rocks/tags/exam/</loc>
-    <lastmod>2020-04-02T08:53:31-05:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://christopherja.rocks/tags/osce/</loc>
     <lastmod>2020-04-02T08:53:31-05:00</lastmod>
   </url>
   
   <url>
     <loc>https://christopherja.rocks/posts/2020/04/osce-exam-tips/</loc>
-    <lastmod>2020-04-02T08:53:31-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://christopherja.rocks/tags/tips/</loc>
     <lastmod>2020-04-02T08:53:31-05:00</lastmod>
   </url>
   

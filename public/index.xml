@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>OSWE Exam Tips</title>
+      <link>https://christopherja.rocks/posts/2020/12/oswe-exam-tips/</link>
+      <pubDate>Mon, 07 Dec 2020 08:53:31 -0500</pubDate>
+      
+      <guid>https://christopherja.rocks/posts/2020/12/oswe-exam-tips/</guid>
+      <description>On the heels of passing my OSWE exam i wanted to write up a quick post to reassure people on the difficulty level of the exam. As there seems to be some misinformation regarding exactly how difficult it is. In short i would say its difficult but doable. Alot of posts seem to point in the direction of it being a huge codebase that is impossible to go through. That was not my experience.</description>
+    </item>
+    
+    <item>
       <title>AzureADSync BackDoor</title>
       <link>https://christopherja.rocks/posts/2020/05/azureadsync-backdoor/</link>
       <pubDate>Thu, 28 May 2020 08:53:31 -0500</pubDate>
@@ -83,7 +92,7 @@ In my repo i have a pdf explaining how it works (hopefully well) its basically t
       
       <guid>https://christopherja.rocks/about/</guid>
       <description>Christopher Alonso
- OSCE OSCP RHCE SEC+ CCNA  This is just a place for me to store my small notes on personal projects and findings while improving my skills. Hopefully some of my posts can be of use to others. Just as they have helped me.
+ OSWE OSCE OSCP RHCE AZ-500 AZ-104 SEC+ CCNA  This is just a place for me to store my small notes on personal projects and findings while improving my skills. Hopefully some of my posts can be of use to others. Just as they have helped me.
 Resume</description>
     </item>
     

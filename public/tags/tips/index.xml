@@ -6,10 +6,19 @@
     <description>Recent content in Tips on Christopher Alonso</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Thu, 02 Apr 2020 08:53:31 -0500</lastBuildDate>
+    <lastBuildDate>Mon, 07 Dec 2020 08:53:31 -0500</lastBuildDate>
     
 	<atom:link href="https://christopherja.rocks/tags/tips/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>OSWE Exam Tips</title>
+      <link>https://christopherja.rocks/posts/2020/12/oswe-exam-tips/</link>
+      <pubDate>Mon, 07 Dec 2020 08:53:31 -0500</pubDate>
+      
+      <guid>https://christopherja.rocks/posts/2020/12/oswe-exam-tips/</guid>
+      <description>On the heels of passing my OSWE exam i wanted to write up a quick post to reassure people on the difficulty level of the exam. As there seems to be some misinformation regarding exactly how difficult it is. In short i would say its difficult but doable. Alot of posts seem to point in the direction of it being a huge codebase that is impossible to go through. That was not my experience.</description>
+    </item>
     
     <item>
       <title>OSCE Exam Tips</title>

@@ -6,10 +6,37 @@
     <description>Recent content in Tags on Christopher Alonso</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Thu, 28 May 2020 08:53:31 -0500</lastBuildDate>
+    <lastBuildDate>Mon, 07 Dec 2020 08:53:31 -0500</lastBuildDate>
     
 	<atom:link href="https://christopherja.rocks/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Exam</title>
+      <link>https://christopherja.rocks/tags/exam/</link>
+      <pubDate>Mon, 07 Dec 2020 08:53:31 -0500</pubDate>
+      
+      <guid>https://christopherja.rocks/tags/exam/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>OSWE</title>
+      <link>https://christopherja.rocks/tags/oswe/</link>
+      <pubDate>Mon, 07 Dec 2020 08:53:31 -0500</pubDate>
+      
+      <guid>https://christopherja.rocks/tags/oswe/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tips</title>
+      <link>https://christopherja.rocks/tags/tips/</link>
+      <pubDate>Mon, 07 Dec 2020 08:53:31 -0500</pubDate>
+      
+      <guid>https://christopherja.rocks/tags/tips/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Azure</title>
@@ -39,29 +66,11 @@
     </item>
     
     <item>
-      <title>Exam</title>
-      <link>https://christopherja.rocks/tags/exam/</link>
-      <pubDate>Thu, 02 Apr 2020 08:53:31 -0500</pubDate>
-      
-      <guid>https://christopherja.rocks/tags/exam/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>OSCE</title>
       <link>https://christopherja.rocks/tags/osce/</link>
       <pubDate>Thu, 02 Apr 2020 08:53:31 -0500</pubDate>
       
       <guid>https://christopherja.rocks/tags/osce/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Tips</title>
-      <link>https://christopherja.rocks/tags/tips/</link>
-      <pubDate>Thu, 02 Apr 2020 08:53:31 -0500</pubDate>
-      
-      <guid>https://christopherja.rocks/tags/tips/</guid>
       <description></description>
     </item>
     
@@ -89,15 +98,6 @@
       <pubDate>Sun, 02 Feb 2020 13:05:45 -0500</pubDate>
       
       <guid>https://christopherja.rocks/tags/splunk/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>AWS</title>
-      <link>https://christopherja.rocks/tags/aws/</link>
-      <pubDate>Wed, 15 Jan 2020 13:05:45 -0500</pubDate>
-      
-      <guid>https://christopherja.rocks/tags/aws/</guid>
       <description></description>
     </item>
     
